@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'; // Importing the trash icon
-
+import { faTrash } from '@fortawesome/free-solid-svg-icons'; 
+import SearchBar from './SearchBar'; 
 function Blog() {
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
     fetchPosts();
@@ -14,6 +15,7 @@ function Blog() {
       const response = await fetch("https://jsonplaceholder.typicode.com/posts");
       const data = await response.json();
       setPosts(data);
+      setFilteredPosts(data); 
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
@@ -22,15 +24,21 @@ function Blog() {
   const deletePost = (postId) => {
     const updatedPosts = posts.filter(post => post.id !== postId);
     setPosts(updatedPosts);
+    setFilteredPosts(updatedPosts); // Update filtered posts after deletion
+  };
+
+  const handleSearch = (keyword) => {
+    const filtered = posts.filter(post => post.title.toLowerCase().includes(keyword.toLowerCase()));
+    setFilteredPosts(filtered);
   };
 
   return (
     <div className="blog">
-      <h1>JSONPlaceholder Blog</h1>
+      <h1>The Blogger's Blog</h1>
+      <SearchBar onSearch={handleSearch} />
       <div className="posts-container">
-        {posts.map(post => (
+        {filteredPosts.map(post => (
           <div key={post.id} className="post">
-            
             <h2 className="post-title">{post.title}</h2>
             <p className="post-body">{post.body}</p>
             <button className="delete-button" onClick={() => deletePost(post.id)}>

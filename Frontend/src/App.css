@@ -4,7 +4,7 @@
   padding: 20px;
 }
 
-h1 {
+.blog h1 {
   text-align: center;
 }
 
@@ -17,12 +17,81 @@ h1 {
 .post {
   border: 1px solid #ddd;
   padding: 20px;
+  position: relative; /* Added for positioning the delete button */
+}
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f32c2c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.post h2 {
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+
+.post-title {
   margin-top: 0;
 }
 
-.post p {
+.post-body {
   margin-bottom: 0;
+}
+
+
+.main{
+  display: flex;
+  flex-direction: row;
+}
+
+.sideNav {
+  width: 20%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.sideNavTitle {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.newPostButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.newPostButton:hover {
+  background-color: #0056b3;
+}
+
+.sideNavList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sideNavItem {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sideNavItem:hover {
+  color: #007bff;
+}
+
+
+.blog{
+  width: 70%;
 }
